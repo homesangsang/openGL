@@ -13,3 +13,36 @@
   3.glFlush,保证前面的openGL命令立即执行，而不是让他们在缓冲区中等待。其作用跟fflush（stdout）类似   
 
 ### class2   
+glVertex2d
+glVertex2f
+glVertex3f
+glVertex3fv
+等等。
+数字表示参数的个数，2表示有两个参数，3表示三个，4表示四个（我知道有点罗嗦~）。
+字母表示参数的类型，s表示16位整数（OpenGL中将这个类型定义为GLshort），
+                   i表示32位整数（OpenGL中将这个类型定义为GLint和GLsizei），
+                   f表示32位浮点数（OpenGL中将这个类型定义为GLfloat和GLclampf），
+                   d表示64位浮点数（OpenGL中将这个类型定义为GLdouble和GLclampd）。
+                   v表示传递的几个参数将使用指针的方式，见下面的例子。
+这些函数除了参数的类型和个数不同以外，功能是相同的。例如，以下五个代码段的功能是等效的：
+（一）glVertex2i(1, 3);
+（二）glVertex2f(1.0f, 3.0f);
+（三）glVertex3f(1.0f, 3.0f, 0.0f);
+（四）glVertex4f(1.0f, 3.0f, 0.0f, 1.0f);
+（五）GLfloat VertexArr3[] = {1.0f, 3.0f, 0.0f};
+      glVertex3fv(VertexArr3);
+      
+画点：
+```
+glBegin(GL_POINTS);//点
+     glVertex2f(0.0f, 0.0f);
+     glVertex2f(0.5f, 0.0f);
+glEnd();
+```   
+画线：
+```
+glBegin(GL_LINES);//点
+     glVertex2f(0.0f, 0.0f);
+     glVertex2f(0.5f, 0.0f);
+glEnd();
+```
